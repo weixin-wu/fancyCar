@@ -1,4 +1,9 @@
+
+body{
+  width: 100%;
+}
 .App {
+  width: 100%;
   text-align: left;
 }
 
@@ -10,7 +15,9 @@
 .App-header {
   background-color: #222;
   height: 120px;
-  padding:  0 30px;
+  width: 100%;
+
+  //padding:  0 30px;
   color: white;
   display: flex;
   align-items: center;
@@ -29,6 +36,10 @@
     margin-left: 20px;
   }
 }
+#root{
+  width: 100%;
+
+}
 .grid-container {
   padding: 10px;
 }
@@ -44,5 +55,13 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+@media only screen and (max-width:500px){
+  .App-logo{
+    height: 30px;
+  }
+  .preview{
+    display: none;
   }
 }
