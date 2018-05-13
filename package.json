@@ -12,10 +12,12 @@
     "ejs": "~2.3.3",
     "express": "~4.13.1",
     "http-proxy": "latest",
+    "mongodb": "^3.1.0-beta4",
     "mongoose": "latest",
     "morgan": "~1.6.1",
     "mysql": "latest",
     "nodemon": "latest",
+    "numeral": "^2.0.6",
     "request": "latest",
     "serve-favicon": "~2.3.0"
   }

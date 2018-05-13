@@ -1,20 +1,57 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+
+import "./css/home.css";
+import Car from "./components/carCard";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = { results: [], backgroundImage: null };
+  }
+  componentDidMount() {
+    var that = this;
+    fetch("/cars")
+      .then(res => res.json())
+      .then(cars => {
+        that.setState({ results: cars });
+      });
+  }
+  handleMouseEnter(i) {
+    let result = this.state.results;
+    this.setState({ backgroundImage: result[i].img });
+  }
+  handleMouseLeave() {
+    this.setState({ backgroundImage: null });
+  }
   render() {
-    return (
-      <div className="App">
+    let that = this;
+    let result = this.state.results;
+    const carList = result.map((data, index) => {
+      return (
+        <Car
+          onMouseLeave={that.handleMouseLeave.bind(this)}
+          onMouseEnter={that.handleMouseEnter.bind(that, index)}
+          key={index}
+          car={data}
+        />
+      );
+    });
+    let divStyle = {
+      backgroundImage: "url(" + this.state.backgroundImage + ")",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center",
+      backgroundSize: "cover"
+    };
+    return <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">FancyCar</h1>
+          <div className="preview" style={divStyle} />
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+        <div className="filter-container">asd</div>
+        <div className="grid-container">{carList}</div>
+      </div>;
   }
 }
 
