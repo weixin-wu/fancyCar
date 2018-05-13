@@ -1,11 +1,8 @@
 import React from "react";
 import "../css/carCard.css";
-import ReactImageMagnify from "react-image-magnify";
-
+//import ReactImageMagnify from "react-image-magnify";
 class Car extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
   render() {
     const car = this.props.car;
     return (
@@ -35,7 +32,7 @@ class Car extends React.Component {
               }}
             /> */}
           </div>
-          <div  className="right-container">
+          <div className="right-container">
             <h2>{car.name}</h2>
             <div className="car-make">{car.make}</div>
             <div className="car-model">
@@ -48,9 +45,9 @@ class Car extends React.Component {
             </div>
             <div className="car-availability">
               <span>Available: </span>
-              {"unknown"}
+              {car.available}
             </div>
-            <div className="buy-button">Buy</div>
+            {car.available === "In Dealership" ? <div className="buy-button">Buy</div> : ""}
           </div>
         </div>
       </div>

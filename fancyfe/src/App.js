@@ -3,9 +3,9 @@ import logo from "./logo.svg";
 
 import "./css/home.css";
 import Car from "./components/carCard";
+import Dropdow from './components/dropdown'
 
 import { connect } from 'react-redux';
-import thunk from 'redux-thunk';
 import axios from 'axios';
 
 class App extends Component {
@@ -14,8 +14,6 @@ class App extends Component {
     this.state = { results: [], backgroundImage: null };
   }
   componentDidMount() {
-    var that = this;
-
     this.props.getCar();
 
   }
@@ -30,6 +28,14 @@ class App extends Component {
 
     //this.setState({ backgroundImage: null });
   }
+  handleSortByName(e) {
+    let sortBy = e.target.dataset.txt;
+    this.props.setSortBy(sortBy);
+  }
+  handleSortClick() {
+    this.props.setShowMenu();
+  }
+
   render() {
     let that = this;
     let result = this.props.car.allCars;
@@ -45,13 +51,11 @@ class App extends Component {
       );
     });
     if (this.props.car.isError) {
-      console.log("in the err")
       carList = <div className="server-error">Server error, please refresh the page</div>
     } else if (this.props.car.isLoading) {
       carList = <div className="server-loading">Loading cars from the server...</div>
 
     }
-    console.log(carList)
     let divStyle = {
       backgroundImage: "url(" + this.state.backgroundImage + ")",
       backgroundRepeat: "no-repeat",
@@ -65,7 +69,10 @@ class App extends Component {
           <h1 className="App-title">FancyCar</h1>
           <div className="preview" style={divStyle} />
         </header>
-        <div className="filter-container">asd</div>
+        <div className="filter-container">
+          <Dropdow onClick={that.handleSortClick.bind(this)}
+            isShowMenu={that.props.car.showMenu}
+            sortByName={that.handleSortByName.bind(this)} /></div>
         <div className="grid-container">{carList}</div>
       </div>
     );
@@ -86,14 +93,20 @@ const mapDispatchToProps = (dispatch) => {
       axios.get('/cars')
         .then((response) => {
           dispatch({ type: "LOADED_CARS", payload: response.data });
-
         })
         .catch((err) => {
-          console.log(err)
           dispatch({ type: "ERR", payload: err });
 
         })
     },
+    setSortBy: (name) => {
+      dispatch({ type: "SORT", payload: name });
+
+    },
+    setShowMenu: () => {
+      dispatch({ type: "SHOW_MENU", payload: true });
+
+    }
 
   }
 }

@@ -5,7 +5,9 @@ const allCars = [
     name: "Ghibli",
     make: "Maserati",
     model: "2018 Ghibli",
-    year: "2018"
+    year: "2018",
+    available: "In Dealership"
+
   },
   {
     id: 2,
@@ -13,7 +15,9 @@ const allCars = [
     name: "car 1",
     make: "myMake",
     model: "ma",
-    year: "myYear"
+    year: "myYear",
+    available: "In Dealership"
+
   },
   {
     id: 3,
@@ -22,7 +26,9 @@ const allCars = [
     name: "Quattroporte",
     make: "Maserati",
     model: "2018 Quattroporte",
-    year: "2018 "
+    year: "2018 ",
+    available: "Out of Stock"
+
   },
   {
     id: 4,
@@ -30,7 +36,9 @@ const allCars = [
     name: "M2 Coupé",
     make: "BMW",
     model: "M2",
-    year: "2018"
+    year: "2018",
+    available: "In Dealership"
+
   },
   {
     id: 5,
@@ -38,7 +46,9 @@ const allCars = [
     name: "Cabriolet",
     make: "BMW",
     model: "M4",
-    year: "2017"
+    year: "2017",
+    available: "Out of Stock"
+
   },
   {
     id: 6,
@@ -47,7 +57,9 @@ const allCars = [
     name: "xDrive Sedan",
     make: "BMW",
     model: "M550i",
-    year: "2016"
+    year: "2016",
+    available: "Out of Stock"
+
   },
   {
     id: 7,
@@ -56,7 +68,9 @@ const allCars = [
     name: "X2",
     make: "BMW",
     model: "X2",
-    year: "2016"
+    year: "2016",
+    available: "Unavailable"
+
   },
   {
     id: 8,
@@ -64,7 +78,9 @@ const allCars = [
     name: " X5",
     make: "BMW",
     model: "X5abc",
-    year: "2016"
+    year: "2016",
+    available: "In Dealership"
+
   },
   {
     id: 9,
@@ -72,7 +88,9 @@ const allCars = [
     name: "Sonata Hybrid",
     make: "Hyundai",
     model: "Sonata",
-    year: "2016"
+    year: "2016",
+    available: "Unavailable"
+
   },
   {
     id: 10,
@@ -80,35 +98,11 @@ const allCars = [
     name: " GranTurismo",
     make: "Maserati",
     model: "GranTurismo",
-    year: "2018"
+    year: "2018",
+    available: "In Dealership"
+
   }
 ];
 
-const carAvailability = [
-  {
-    id: 1,
-    available: "In Dealership"
-  },
-  {
-    id: 2,
-    available: "Out of Stock"
-  },
-  {
-    id: 3,
-    available: "In Dealership"
-  },
-  {
-    id: 4,
-    available: "Unavailable"
-  },
-  {
-    id: 5,
-    available: "In Dealership"
-  },
-  {
-    id: 6,
-    available: "In Dealership"
-  }
-];
+
 exports.allCars = allCars;
-exports.carAvailability = carAvailability;
