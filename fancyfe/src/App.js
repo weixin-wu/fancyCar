@@ -5,7 +5,8 @@ import "./css/home.css";
 import Car from "./components/carCard";
 
 import { connect } from 'react-redux';
-
+import thunk from 'redux-thunk';
+import axios from 'axios';
 
 class App extends Component {
   constructor() {
@@ -14,31 +15,27 @@ class App extends Component {
   }
   componentDidMount() {
     var that = this;
-    fetch("/cars")
 
-      .then(res => {
-        if (!res.ok) {
-          return [];
-        } else {
-          return res.json();
-        }
-      })
-      .then(cars => {
-        that.setState({ results: cars });
-      });
+    this.props.getCar();
+
   }
+
   handleMouseEnter(i) {
-    let result = this.state.results;
-    this.setState({ backgroundImage: result[i].img });
+    //TODO:remove state
+    // let result = this.state.results;
+    // this.setState({ backgroundImage: result[i].img });
   }
   handleMouseLeave() {
-    this.setState({ backgroundImage: null });
+    //TODO:remove state
+
+    //this.setState({ backgroundImage: null });
   }
   render() {
     let that = this;
-    let result = this.state.results;
-    const carList = result.map((data, index) => {
+    let result = this.props.car.allCars;
+    var carList = result.map((data, index) => {
       return (
+
         <Car
           onMouseLeave={that.handleMouseLeave.bind(this)}
           onMouseEnter={that.handleMouseEnter.bind(that, index)}
@@ -47,6 +44,14 @@ class App extends Component {
         />
       );
     });
+    if (this.props.car.isError) {
+      console.log("in the err")
+      carList = <div className="server-error">Server error, please refresh the page</div>
+    } else if (this.props.car.isLoading) {
+      carList = <div className="server-loading">Loading cars from the server...</div>
+
+    }
+    console.log(carList)
     let divStyle = {
       backgroundImage: "url(" + this.state.backgroundImage + ")",
       backgroundRepeat: "no-repeat",
@@ -67,9 +72,32 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state) => {
   return {
-    car: state.hover
+    car: state.carReducer
   }
 }
-export default App;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCar: () => {
+      dispatch({ type: "LOADING", payload: null });
+
+      axios.get('/cars')
+        .then((response) => {
+          dispatch({ type: "LOADED_CARS", payload: response.data });
+
+        })
+        .catch((err) => {
+          console.log(err)
+          dispatch({ type: "ERR", payload: err });
+
+        })
+    },
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default App;
+

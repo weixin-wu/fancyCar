@@ -6,7 +6,18 @@ body{
   width: 100%;
   text-align: left;
 }
+.server-error, .server-loading{
+  background: #f8f8f8;
+  position: relative;
+  margin:auto;
+  color: red;
+  padding: 20px;
+  font-size: 2em;
+}
+.server-loading{
+  color: goldenrod;
 
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
