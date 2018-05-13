@@ -8,33 +8,34 @@ class Car extends React.Component {
   }
   render() {
     const car = this.props.car;
-
     return (
       <div className="car-container">
         <div className="left-right-container">
           <div className="left-container">
-            {/* <img
+            <img
               onMouseLeave={this.props.onMouseLeave}
               onMouseEnter={this.props.onMouseEnter}
               src={car.img}
               border="0"
               alt="GT-_Sport-new_MY18"
-            /> */}
-            <ReactImageMagnify
+            />
+            {/* <ReactImageMagnify
               {...{
                 enlargedImageContainerDimensions: {
-                  width: '200%', height: '200%'
+                  width: '220%', height: '200%'
                 },
+                enlargedImagePosition: "over",
                 smallImage: {
-                  alt: "Wristwatch by Ted Baker London",
+                  alt: "",
                   isFluidWidth: true,
+                  
                   src: car.img
                 },
                 largeImage: { src: car.img, width: 800, height: 600 }
               }}
-            />{" "}
+            /> */}
           </div>
-          <div className="right-container">
+          <div  className="right-container">
             <h2>{car.name}</h2>
             <div className="car-make">{car.make}</div>
             <div className="car-model">

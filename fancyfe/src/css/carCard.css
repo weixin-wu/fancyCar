@@ -1,21 +1,29 @@
 .car-container {
   border: 1px solid #555555;
-  padding: 20px 20px;
-  width: calc(100%/2.5);
+  width: calc(100%/3.2);
   display: inline-block;
   margin: 5px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  position: relative; }
   .car-container .left-right-container {
     display: flex;
-    height: 160px; }
+    height: 220px;
+    margin: auto;
+    position: relative; }
   .car-container .left-container {
-    width: 60%; }
+    width: 45%;
+    margin: auto;
+    position: relative;
+    overflow: hidden; }
     .car-container .left-container > img {
-      vertical-align: top;
-      width: 100%; }
+      vertical-align: middle;
+      width: 80% !important;
+      height: 60% !important;
+      margin: auto;
+      position: relative; }
   .car-container .right-container {
     width: 40%;
-    padding: 0 10px; }
+    padding: 20px 20px; }
     .car-container .right-container > h2 {
       padding: 0;
       margin: 0; }

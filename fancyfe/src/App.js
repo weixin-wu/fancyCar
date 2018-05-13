@@ -4,6 +4,9 @@ import logo from "./logo.svg";
 import "./css/home.css";
 import Car from "./components/carCard";
 
+import { connect } from 'react-redux';
+
+
 class App extends Component {
   constructor() {
     super();
@@ -12,7 +15,14 @@ class App extends Component {
   componentDidMount() {
     var that = this;
     fetch("/cars")
-      .then(res => res.json())
+
+      .then(res => {
+        if (!res.ok) {
+          return [];
+        } else {
+          return res.json();
+        }
+      })
       .then(cars => {
         that.setState({ results: cars });
       });
@@ -43,7 +53,8 @@ class App extends Component {
       backgroundPosition: "center",
       backgroundSize: "cover"
     };
-    return <div className="App">
+    return (
+      <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">FancyCar</h1>
@@ -51,8 +62,14 @@ class App extends Component {
         </header>
         <div className="filter-container">asd</div>
         <div className="grid-container">{carList}</div>
-      </div>;
+      </div>
+    );
   }
 }
 
+const mapStateToProps = (state, props) => {
+  return {
+    car: state.hover
+  }
+}
 export default App;

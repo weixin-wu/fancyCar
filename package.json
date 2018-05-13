@@ -16,7 +16,7 @@
     "mongoose": "latest",
     "morgan": "~1.6.1",
     "mysql": "latest",
-    "nodemon": "latest",
+    "nodemon": "^1.17.4",
     "numeral": "^2.0.6",
     "request": "latest",
     "serve-favicon": "~2.3.0"
